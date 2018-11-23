@@ -20,6 +20,9 @@ public class Employee {
     private String last_name;
 
     @ManyToMany
+    @JoinTable(name="emp_filiaal",
+    joinColumns=@JoinColumn(name="employee_id"),
+    inverseJoinColumns=@JoinColumn(name="mc_donald_id"))
     private Set<McDonalds> mcDonalds = new HashSet<McDonalds>();
 
     public int getId() {
