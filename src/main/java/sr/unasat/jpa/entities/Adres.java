@@ -15,8 +15,8 @@ public class Adres {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "adres")
-    private List<McDonalds> mcDonaldsList;
+    @OneToOne(mappedBy = "adres")
+    private McDonalds mcDonalds;
 
     public int getId() {
         return id;
@@ -32,5 +32,13 @@ public class Adres {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public McDonalds getMcDonalds() {
+        return mcDonalds;
+    }
+
+    public void setMcDonalds(McDonalds mcDonalds) {
+        this.mcDonalds = mcDonalds;
     }
 }

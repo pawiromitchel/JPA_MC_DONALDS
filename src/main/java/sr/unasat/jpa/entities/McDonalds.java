@@ -2,6 +2,7 @@ package sr.unasat.jpa.entities;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,7 +23,7 @@ public class McDonalds {
     @Column(name = "code", unique = true, nullable = false)
     private String code;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "adres_id")
     private Adres adres;
 
@@ -31,7 +32,11 @@ public class McDonalds {
     private City city;
 
     @ManyToMany
-    private Set<Employee> employees = new HashSet<Employee>();
+    @JoinTable(name="emp_filiaal",
+    joinColumns=@JoinColumn(name="employee_id"),
+    inverseJoinColumns=@JoinColumn(name="mc_donald_id"))
+    private List<Employee> employees;
+
 
     public int getId() {
         return id;
@@ -45,20 +50,12 @@ public class McDonalds {
         return name;
     }
 
-    public void setName(String address) {
-        this.name = address;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public Adres getAdres() {
-        return adres;
-    }
-
-    public void setAdres(Adres adres) {
-        this.adres = adres;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -73,6 +70,14 @@ public class McDonalds {
         this.code = code;
     }
 
+    public Adres getAdres() {
+        return adres;
+    }
+
+    public void setAdres(Adres adres) {
+        this.adres = adres;
+    }
+
     public City getCity() {
         return city;
     }
@@ -81,13 +86,24 @@ public class McDonalds {
         this.city = city;
     }
 
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
     @Override
     public String toString() {
         return "McDonalds{" +
                 "id=" + id +
-                ", address=" + name +
-                ", phoneNumber=" + phoneNumber +
-                ", code=" + code +
-                ", " + city.toString() + '}';
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", code='" + code + '\'' +
+                ", adres=" + adres +
+                ", city=" + city.toString() +
+                ", employees=" + employees.toString() +
+                '}';
     }
 }

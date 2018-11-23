@@ -2,6 +2,7 @@ package sr.unasat.jpa.entities;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,7 +24,7 @@ public class Employee {
     @JoinTable(name="emp_filiaal",
     joinColumns=@JoinColumn(name="employee_id"),
     inverseJoinColumns=@JoinColumn(name="mc_donald_id"))
-    private Set<McDonalds> mcDonalds = new HashSet<McDonalds>();
+    private List<McDonalds> mcDonalds;
 
     public int getId() {
         return id;
@@ -49,11 +50,21 @@ public class Employee {
         this.last_name = last_name;
     }
 
-    public Set<McDonalds> getMcDonalds() {
+    public List<McDonalds> getMcDonalds() {
         return mcDonalds;
     }
 
-    public void setMcDonalds(Set<McDonalds> mcDonalds) {
+    public void setMcDonalds(List<McDonalds> mcDonalds) {
         this.mcDonalds = mcDonalds;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", first_name='" + first_name + '\'' +
+                ", last_name='" + last_name + '\'' +
+                ", mcDonalds=" + mcDonalds.toString() +
+                '}';
     }
 }
