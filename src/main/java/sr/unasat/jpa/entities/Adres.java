@@ -41,4 +41,12 @@ public class Adres {
     public void setMcDonalds(McDonalds mcDonalds) {
         this.mcDonalds = mcDonalds;
     }
+
+    @Override
+    public String toString() {
+        return "Adres{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

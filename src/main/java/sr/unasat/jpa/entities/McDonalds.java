@@ -101,9 +101,9 @@ public class McDonalds {
                 ", name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", code='" + code + '\'' +
-                ", adres=" + adres +
+                ", adres=" + adres.toString() +
                 ", city=" + city.toString() +
-                ", employees=" + employees.toString() +
+                ", employee" + employees.toString() +
                 '}';
     }
 }
